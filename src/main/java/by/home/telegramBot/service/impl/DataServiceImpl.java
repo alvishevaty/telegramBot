@@ -36,9 +36,15 @@ public class DataServiceImpl implements DataService{
 	}
 
 	@Override
-	public boolean getUserInfo(String username) {
-		boolean chechUser = dataDAO.getUserInfo(username);
+	public boolean getUserInfo(int userId) {
+		boolean chechUser = dataDAO.getUserInfo(userId);
 		return chechUser;
+	}
+
+	@Override
+	public void save(City city) {
+		dataDAO.save(city);
+		
 	}
 
 }

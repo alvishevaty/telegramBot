@@ -21,8 +21,6 @@ public class MyTelegramBot extends TelegramWebhookBot {
 	@Override
 	public BotApiMethod<?> onWebhookUpdateReceived(Update update) {
 
-		System.out.println("onWebhookUpdateReceived");
-
 		BotApiMethod<?> responseMessage = telegramRequestHandler.updateHandler(update);
 
 		return responseMessage;

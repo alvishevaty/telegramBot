@@ -16,8 +16,8 @@ public class DataDAOImpl implements DataDAO {
 
 	private static final String SELECT_CITY_INFO = "FROM City WHERE city = :city";
 	private static final String CITY_ATTR = "city";
-	private static final String SELECT_USER_INFO = "FROM User WHERE username = :username";
-	private static final String USERNAME_ATTR = "username";
+	private static final String SELECT_USER_INFO = "FROM User WHERE user_id = :userId";
+	private static final String USER_ID_ATTR = "userId";
 
 	SessionFactory sessionFactory;
 
@@ -53,17 +53,26 @@ public class DataDAOImpl implements DataDAO {
 	}
 
 	@Override
-	public boolean getUserInfo(String username) {
+	public boolean getUserInfo(int userId) {
 
 		Session currentSession = sessionFactory.getCurrentSession();
 
-		List<User> user = currentSession.createQuery(SELECT_USER_INFO, User.class).setParameter(USERNAME_ATTR, username).getResultList();
+		List<User> user = currentSession.createQuery(SELECT_USER_INFO, User.class).setParameter(USER_ID_ATTR, userId).getResultList();
 
 		if (user.isEmpty()) {
 			return false;
 		} else {
 			return true;
 		}
+
+	}
+
+	@Override
+	public void save(City city) {
+		
+		Session currentSession = sessionFactory.getCurrentSession();
+
+		currentSession.save(city);
 
 	}
 

@@ -2,7 +2,6 @@ package by.home.telegramBot.service;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.BotApiMethod;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
@@ -48,7 +47,7 @@ public class TelegramRequestHandler {
 		
 		User user = new User(username, Integer.toString(userId), Long.toString(chatId));
 		
-		boolean checkUserInfo = dataService.getUserInfo(username);
+		boolean checkUserInfo = dataService.getUserInfo(userId);
 		
 		if(checkUserInfo == false) {
 			dataService.save(user);
